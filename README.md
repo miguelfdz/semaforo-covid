@@ -1,1 +1,1 @@
-# SemaforoCovid
+# semaforo-covid
