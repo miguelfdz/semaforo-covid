@@ -1,6 +1,7 @@
 #https://datos.covid-19.conacyt.mx/Downloads/Files/Casos_Diarios_Estado_Nacional_Confirmados_20210317.csv
 from datetime import timedelta, date, datetime
 import requests
+import os
 
 def urlNueva():
 	#Metodo que obtiene el nombre y url del archivo con los datos mas recientes
@@ -29,10 +30,17 @@ def descargarArchivo():
 	if status_code == 404:
 		url = urlDiaAnterior()
 		r = requests.get(url, allow_redirects=True)
-		open('covid.csv', 'wb').write(r.content)
+		writeFile(r)
 	else:
 		#Descargar archivo en el directorio actual con el nombre de covid.csv
-		open('covid.csv', 'wb').write(r.content)
+		writeFile(r)
+
+def writeFile(request):
+	if os.path.exists('covid.csv'):
+		os.remove('covid.csv')
+	else:
+		print("El archivo no existe, se descargara el mas actual")
+	open('covid.csv', 'wb').write(request.content)
 
 #--------MAIN--------
 descargarArchivo()
