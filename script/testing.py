@@ -3,8 +3,8 @@ from datetime import timedelta, date, datetime
 import requests
 import os
 
+#URL
 def urlNueva():
-	#Metodo que obtiene el nombre y url del archivo con los datos mas recientes
 	urlCovid= "https://datos.covid-19.conacyt.mx/Downloads/Files/Casos_Diarios_Estado_Nacional_Confirmados_"
 	diaActual = str(date.today())
 	diaActual = diaActual.replace('-', '')
@@ -16,6 +16,8 @@ def urlDiaAnterior():
     diaAnterior = diaAnterior.replace('-', '')
     return urlCovid+diaAnterior+".csv"
 
+
+#Files
 def is_downloadable(status_code):
 	if status_code == 404:
 		return False
@@ -23,7 +25,6 @@ def is_downloadable(status_code):
 		return True
 
 def descargarArchivo():
-	#Si el archivo es correcto se descarga
 	url = urlNueva()
 	r = requests.get(url, allow_redirects=True)
 	status_code = r.status_code
@@ -32,7 +33,6 @@ def descargarArchivo():
 		r = requests.get(url, allow_redirects=True)
 		writeFile(r)
 	else:
-		#Descargar archivo en el directorio actual con el nombre de covid.csv
 		writeFile(r)
 
 def writeFile(request):
@@ -41,6 +41,8 @@ def writeFile(request):
 	else:
 		print("El archivo no existe, se descargara el mas actual")
 	open('covid.csv', 'wb').write(request.content)
+
+#FileManagment
 
 #--------MAIN--------
 descargarArchivo()
