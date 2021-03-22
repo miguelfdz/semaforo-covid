@@ -6,8 +6,8 @@ def urlNueva():
 	#Metodo que obtiene el nombre y url del archivo con los datos mas recientes
 	urlCovid= "https://datos.covid-19.conacyt.mx/Downloads/Files/Casos_Diarios_Estado_Nacional_Confirmados_"
 	diaActual = str(date.today())
-	diaActual = diaAnterior.replace('-', '')
-	return urlCovid+diaAnterior+".csv"
+	diaActual = diaActual.replace('-', '')
+	return urlCovid+diaActual+".csv"
 
 def urlDiaAnterior():
     urlCovid= "https://datos.covid-19.conacyt.mx/Downloads/Files/Casos_Diarios_Estado_Nacional_Confirmados_"
