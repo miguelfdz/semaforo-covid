@@ -1,9 +1,13 @@
 import csv
+import os
+
 summatory = 0
 avg = 0.0
 daily_cases = 0.0
 status = ""
 nl_population = 5784000
+
+os.system('python3 download_covid_cases.py')
 
 with open('covid.csv', mode='r') as csv_file:
   csv_reader = csv.DictReader(csv_file)
