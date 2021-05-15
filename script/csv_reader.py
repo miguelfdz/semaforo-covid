@@ -1,6 +1,14 @@
 import csv
 import os
+from gpiozero import LED
+from time import sleep
 
+#Pines de cada LED
+yellow = LED(26)
+green = LED(5)
+red = LED(10)
+orange = LED(11)
+#--------
 summatory = 0
 avg = 0.0
 daily_cases = 0.0
@@ -21,15 +29,22 @@ with open('covid.csv', mode='r') as csv_file:
 
 def get_nl_status(daily_cases):
   if daily_cases < 0.5:
-    return 'Verde'
+    green.on()
+    sleep(10)
+    green.off()
   elif daily_cases >= 0.5 and daily_cases <= 2.5:
-    return 'Amarillo'
+    yellow.on()
+    sleep(10)
+    yellow.off()
   elif daily_cases >= 2.6 and daily_cases <= 5.0:
-    return 'Naranja'
+    orange.on()
+    sleep(10)
+    orange.off()
   elif daily_cases > 5.1:
-    return 'Rojo'
+    red.on()
+    sleep(10)
+    red.off()
   else:
     return 'error'
 
 status = get_nl_status(daily_cases)
-print(status)
