@@ -28,23 +28,27 @@ with open('covid.csv', mode='r') as csv_file:
       daily_cases = (avg/nl_population)*100000
 
 def get_nl_status(daily_cases):
+  print("Desplegando semaforo epidemiologico de Nuevo Leon:")
   if daily_cases < 0.5:
     green.on()
-    sleep(10)
+    print("Semaforo: Verde\nPodemos salir pero con precaución y prevención.")
+    sleep(30)
     green.off()
   elif daily_cases >= 0.5 and daily_cases <= 2.5:
     yellow.on()
-    sleep(10)
+    print("Semaforo: Amarillo\nHay más actividades pero con precaución.")
+    sleep(30)
     yellow.off()
   elif daily_cases >= 2.6 and daily_cases <= 5.0:
     orange.on()
-    sleep(10)
+    print("Semaforo: Naranja\nSi puedes, quédate en casa.")
+    sleep(30)
     orange.off()
   elif daily_cases > 5.1:
     red.on()
-    sleep(10)
+    print("Semaforo: Rojo\nNo salgas si no es estrictamente necesario.")
+    sleep(30)
     red.off()
   else:
     return 'error'
-
-status = get_nl_status(daily_cases)
+  print("Ejecucion finalizada, apagando el semaforo...")
