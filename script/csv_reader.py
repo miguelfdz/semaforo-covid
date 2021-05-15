@@ -52,3 +52,5 @@ def get_nl_status(daily_cases):
   else:
     return 'error'
   print("Ejecucion finalizada, apagando el semaforo...")
+
+get_nl_status(daily_cases)
